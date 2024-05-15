@@ -19,3 +19,5 @@ def extract_audio(session):
     # Run ffmpeg command
     ffmpeg.input(video_path_str).output(
         audio_path_str, acodec='libmp3lame').run()
+
+    session['audio_path'] = audio_path_str

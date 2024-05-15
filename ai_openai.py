@@ -124,26 +124,27 @@ def GetImportantSubtitleNumbers(filename):
 
 
 def extract_highlights(session):
-    filename = session['audio_srt']
+    filename = session['audio_srt_path']
     num_of_subtitles = 0
-    subs = []
+    segIds = []
     while True:
-        subs = GetImportantSubtitleNumbers(filename)
-        num_of_subtitles = len(subs)
+        segIds = GetImportantSubtitleNumbers(filename)
+        num_of_subtitles = len(segIds)
         print("num_of_subtitles", num_of_subtitles,
-              "subTitleNumbers output", subs)
+              "subTitleNumbers output", segIds)
 
         if (num_of_subtitles > 10):
             break
 
-    highlights_path = Path(session['dir']) + "highlights.json"
+    segIds_path = Path(session['dir']) + "segIds.json"
 
-    with open(str(highlights_path), 'w') as f:
-        f.write(json.dumps(subs))
+    with open(str(segIds_path), 'w') as f:
+        f.write(json.dumps(segIds))
 
-    session['highlights_path'] = highlights_path
+    session['segIds_path'] = segIds_path
+    session['segIds'] = segIds
 
-    return subs
+    return segIds
 
 
 if __name__ == "__main__":
