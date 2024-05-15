@@ -4,8 +4,7 @@ import ffmpeg
 
 def extract_audio(session):
     video_path = session['video_path']
-    audio_dir = Path(session['dir'])
-    audio_path = audio_dir / "audio.mp3"
+    audio_path = Path(session['dir']) + "audio.mp3"
 
     # Ensure the video path is a string
     video_path_str = str(video_path)
@@ -20,6 +19,3 @@ def extract_audio(session):
     # Run ffmpeg command
     ffmpeg.input(video_path_str).output(
         audio_path_str, acodec='libmp3lame').run()
-
-
-

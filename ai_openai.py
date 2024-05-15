@@ -1,5 +1,7 @@
 import os
 import random
+from pathlib import Path
+import json
 
 from openai import OpenAI
 
@@ -121,7 +123,8 @@ def GetImportantSubtitleNumbers(filename):
     return subTitleNumbers
 
 
-def FindImportantSubtitlesAndGiveSubtitleNumbers(filename):
+def extract_highlights(session):
+    filename = session['audio_srt']
     num_of_subtitles = 0
     subs = []
     while True:
@@ -132,9 +135,17 @@ def FindImportantSubtitlesAndGiveSubtitleNumbers(filename):
 
         if (num_of_subtitles > 10):
             break
+
+    highlights_path = Path(session['dir']) + "highlights.json"
+
+    with open(str(highlights_path), 'w') as f:
+        f.write(json.dumps(subs))
+
+    session['highlights_path'] = highlights_path
+
     return subs
 
 
 if __name__ == "__main__":
-    subs1 = FindImportantSubtitlesAndGiveSubtitleNumbers('./dl/N9zpRvFRmj8/audio.srt')
+    subs1 = extract_highlights('./dl/N9zpRvFRmj8/audio.srt')
     print("subTitleNumbers output", subs1)
