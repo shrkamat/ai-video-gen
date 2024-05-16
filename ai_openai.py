@@ -124,6 +124,7 @@ def GetImportantSubtitleNumbers(filename):
 
 
 def extract_highlights(session):
+    print('a')
     # if open ai response is already available don't fetch again
     segIds_path = Path(session['dir']) / "segIds.json"
     if segIds_path.exists():
@@ -147,8 +148,6 @@ def extract_highlights(session):
         # if (num_of_subtitles > 10):
         #     break
         break
-
-    segIds_path = Path(session['dir']) / "segIds.json"
 
     with open(str(segIds_path), 'w') as f:
         f.write(json.dumps(segIds))

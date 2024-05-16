@@ -40,7 +40,7 @@ def transcribe(session):
         print('transcribe already complete!')
 
         session['audio_srt_path'] = str(audio_srt_path)
-        session['audio_tok_path'] = str(session['dir'] / 'audio_tokenized.json')
+        session['audio_tok_path'] = str(Path(session['dir']) / 'audio_tokenized.json')
         return
 
     # transcribe stage 1

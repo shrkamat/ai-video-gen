@@ -3,6 +3,7 @@ from ffmpeg_util import extract_audio
 from transcribe import transcribe
 from ai_openai import extract_highlights
 from stich import create_summary_video
+import traceback
 
 
 def start():
@@ -17,6 +18,7 @@ def start():
         create_summary_video(session)
     except Exception as e:
         print("Failure: ", e)
+        print(traceback.format_exec())
     finally:
         print("Goodbye!")
 
