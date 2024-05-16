@@ -133,8 +133,9 @@ def extract_highlights(session):
         print("num_of_subtitles", num_of_subtitles,
               "subTitleNumbers output", segIds)
 
-        if (num_of_subtitles > 10):
-            break
+        # if (num_of_subtitles > 10):
+        #     break
+        break
 
     segIds_path = Path(session['dir']) / "segIds.json"
 
