@@ -52,7 +52,7 @@ def create_summary(video_file, segIds, audio_tok_file):
 def create_summary_video(session):
     summary = create_summary(session['video_path'], session['segIds'],
                              session['audio_tok_path'])
-    output_path = Path(session['dir']) + "summary.mp4"
+    output_path = Path(session['dir']) / "summary.mp4"
     summary.to_videofile(
         output_path,
         codec="libx264",
