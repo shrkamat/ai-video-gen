@@ -22,15 +22,24 @@ def write_json_file(session, data, filename):
         f.write(json.dumps(data, indent=4))
     return file_path
 
+
 def write_file(session, data, filename):
     file_path = Path(session['dir']) / filename
     with open(str(file_path), 'w') as f:
         f.write(data)
     return file_path
 
+
 def transcribe(session):
 
     audio_file = session['audio_path']
+
+    if session['dir'] / 'audio.srt':
+        print('transcribe already complete!')
+
+        session['audio_srt_path'] = str(session['dir'] / 'audio.srt')
+        session['audio_tok_path'] = str(session['dir'] / 'audio_tokenized.json')
+        return
 
     # transcribe stage 1
     model_x = whisperx.load_model(

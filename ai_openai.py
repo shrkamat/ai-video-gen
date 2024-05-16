@@ -124,7 +124,18 @@ def GetImportantSubtitleNumbers(filename):
 
 
 def extract_highlights(session):
+    # if open ai response is already available don't fetch again
+    segIds_path = Path(session['dir']) / "segIds.json"
+    if segIds_path.exists():
+        print('openai response alreasy exists!')
+        session['segIds_path'] = str(segIds_path)
+        with open(str(segIds_path), 'r') as f:
+            segIds = json.load(f)
+            session['segIds'] = segIds
+        return
+
     filename = session['audio_srt_path']
+
     num_of_subtitles = 0
     segIds = []
     while True:
