@@ -6,6 +6,11 @@ def extract_audio(session):
     video_path = session['video_path']
     audio_path = Path(session['dir']) / "audio.mp3"
 
+    if audio_path.exists():
+        print('audio already extracted!')
+        session['audio_path'] = str(audio_path)
+        return
+
     # Ensure the video path is a string
     video_path_str = str(video_path)
 

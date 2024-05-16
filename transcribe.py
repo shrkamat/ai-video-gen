@@ -34,10 +34,12 @@ def transcribe(session):
 
     audio_file = session['audio_path']
 
-    if session['dir'] / 'audio.srt':
+    audio_srt_path = Path(session['dir']) / 'audio.srt'
+
+    if audio_srt_path.exists():
         print('transcribe already complete!')
 
-        session['audio_srt_path'] = str(session['dir'] / 'audio.srt')
+        session['audio_srt_path'] = str(audio_srt_path)
         session['audio_tok_path'] = str(session['dir'] / 'audio_tokenized.json')
         return
 
