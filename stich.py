@@ -2,16 +2,13 @@
 from __future__ import unicode_literals
 from moviepy.editor import VideoFileClip, concatenate_videoclips
 import json
-import os
 from pathlib import Path
-
 
 import imageio
 
-imageio.plugins.ffmpeg.download()
 
-
-imageio.plugins.ffmpeg.download()
+if imageio.plugins.ffmpeg.get_exe() is None:
+    imageio.plugins.ffmpeg.download()
 
 
 def create_summary(video_file, segIds, audio_tok_file):
@@ -58,3 +55,15 @@ def create_summary_video(session):
         codec="libx264",
         temp_audiofile="temp.m4a", remove_temp=True, audio_codec="aac")
 
+
+if __name__ == "__main__":
+    with open('dl/g_1oiJqE3OI/segIds.json') as f:
+        segIds = json.load(f)
+        print(type(segIds))
+        session = {
+            "video_path": "dl/g_1oiJqE3OI/output.mp4",
+            "segIds": segIds,
+            "audio_tok_path": "dl/g_1oiJqE3OI/audio_tokenized.json",
+            "dir": "dl/g_1oiJqE3OI"
+        }
+        create_summary_video(session)
