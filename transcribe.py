@@ -17,7 +17,7 @@ def seconds_to_timestamp(seconds):
 
 
 def write_json_file(session, data, filename):
-    file_path = Path(session['dir']) + filename
+    file_path = Path(session['dir']) / filename
     with open(str(file_path), 'w') as f:
         f.write(json.dumps(data, indent=4))
     return file_path
