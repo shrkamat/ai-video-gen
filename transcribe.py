@@ -3,8 +3,8 @@ import json
 import math
 from pathlib import Path
 
-(device, compute) = ("cuda", "fp16")
-# (device, compute) = ("cpu", "fp32")
+(device, compute) = ("cuda", "float16")
+# (device, compute) = ("cpu", "float32")
 
 
 def seconds_to_timestamp(seconds):
