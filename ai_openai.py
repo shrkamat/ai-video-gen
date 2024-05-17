@@ -128,7 +128,7 @@ def extract_highlights(session):
     # if open ai response is already available don't fetch again
     segIds_path = Path(session['dir']) / "segIds.json"
     if segIds_path.exists():
-        print('openai response alreasy exists!')
+        print('openai response already exists!')
         session['segIds_path'] = str(segIds_path)
         with open(str(segIds_path), 'r') as f:
             segIds = json.load(f)
@@ -143,7 +143,7 @@ def extract_highlights(session):
         segIds = GetImportantSubtitleNumbers(filename)
         num_of_subtitles = len(segIds)
         print("num_of_subtitles", num_of_subtitles,
-              "subTitleNumbers output", segIds)
+              "subTitleIds", segIds)
 
         if (num_of_subtitles > 10):
             break
@@ -158,5 +158,8 @@ def extract_highlights(session):
 
 
 if __name__ == "__main__":
-    subs1 = extract_highlights('./dl/N9zpRvFRmj8/audio.srt')
-    print("subTitleNumbers output", subs1)
+    session = {
+        'dir': 'dl/test',
+        'audio_srt_path' : './dl/test/audio.srt',
+    }
+    extract_highlights(session)
