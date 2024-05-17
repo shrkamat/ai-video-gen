@@ -145,9 +145,8 @@ def extract_highlights(session):
         print("num_of_subtitles", num_of_subtitles,
               "subTitleNumbers output", segIds)
 
-        # if (num_of_subtitles > 10):
-        #     break
-        break
+        if (num_of_subtitles > 10):
+            break
 
     with open(str(segIds_path), 'w') as f:
         f.write(json.dumps(segIds))
