@@ -125,8 +125,11 @@ def create_summary_video(session):
     summary = create_summary(session['video_path'], session['segIds'],
                              session['audio_tok_path'])
     output_path = Path(session['dir']) / "summary.mp4"
+    # summary.write_videofile(str(output_path),
+    #     codec="libx264",
+    #     temp_audiofile="temp.m4a", remove_temp=True, audio_codec="aac", fps=60)
     summary.to_videofile(
-        output_path,
+        str(output_path),
         codec="libx264",
         temp_audiofile="temp.m4a", remove_temp=True, audio_codec="aac", fps=60)
 
