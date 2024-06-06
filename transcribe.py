@@ -1,6 +1,7 @@
 import whisperx
 import json
 import math
+import sys
 from pathlib import Path
 
 (device, compute) = ("cuda", "float16")
@@ -74,3 +75,11 @@ def transcribe(session):
         res += '{:s}\n'.format(seg['text'].strip())
 
     session['audio_srt_path'] = write_file(session, res, 'audio.srt')
+
+if __name__ == "__main__":
+    session = {}
+    if len(sys.argv) != 2:
+        print('invalid invocation')
+        exit (1)
+
+    session['audio_path'] = Path(sys.argv[1]).absolute()
